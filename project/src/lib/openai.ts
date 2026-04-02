@@ -4,64 +4,64 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 })
 
-export async function generateWorkout(options: {
+export async function generateWorkout(params: {
   goal: string
   experience: string
   equipment: string[]
   daysPerWeek: number
 }) {
-  const completion = await openai.chat.completions.create({
+  const response = await openai.chat.completions.create({
     model: "gpt-4",
     messages: [
       {
         role: "system",
-        content: "You are a professional fitness trainer. Generate a structured workout plan based on the user's requirements."
+        content: "You are a fitness expert. Generate a structured workout plan based on the user's preferences."
       },
       {
         role: "user",
-        content: `Create a ${options.daysPerWeek}-day workout plan for someone with ${options.experience} experience, goal of ${options.goal}, using equipment: ${options.equipment.join(', ')}.`
+        content: `Create a ${params.daysPerWeek}-day workout plan for someone with ${params.experience} experience, focusing on ${params.goal}, using equipment: ${params.equipment.join(', ')}`
       }
     ],
-    max_tokens: 1500,
+    max_tokens: 1000,
   })
 
-  return completion.choices[0]?.message?.content || ''
+  return response.choices[0].message.content
 }
 
-export async function analyzeProgress(workoutHistory: any[]) {
-  const completion = await openai.chat.completions.create({
+export async function analyzeProgress(workoutData: any[]) {
+  const response = await openai.chat.completions.create({
     model: "gpt-4",
     messages: [
       {
         role: "system",
-        content: "You are a fitness coach analyzing workout progress. Provide insights on trends, plateaus, and recommendations."
+        content: "Analyze workout progress and provide insights about strength trends, plateaus, and recommendations."
       },
       {
         role: "user",
-        content: `Analyze this workout history and provide insights: ${JSON.stringify(workoutHistory.slice(-10))}`
+        content: `Analyze this workout data and provide insights: ${JSON.stringify(workoutData)}`
       }
     ],
-    max_tokens: 800,
+    max_tokens: 500,
   })
 
-  return completion.choices[0]?.message?.content || ''
+  return response.choices[0].message.content
 }
 
 export async function suggestImprovements(exercise: string, currentForm: string) {
-  const completion = await openai.chat.completions.create({
+  const response = await openai.chat.completions.create({
     model: "gpt-4",
     messages: [
       {
         role: "system",
-        content: "You are a form coach providing specific technique tips for exercises. Keep responses concise and actionable."
+        content: "Provide form tips and safety advice for specific exercises."
       },
       {
         role: "user",
-        content: `Provide form tips for ${exercise}. Current approach: ${currentForm}`
+        content: `Give form tips and safety advice for ${exercise}. Current form notes: ${currentForm}`
       }
     ],
-    max_tokens: 400,
+    max_tokens: 300,
   })
 
-  return completion.choices[0]?.message?.content || ''
+  return response.choices[0].message.content
 }

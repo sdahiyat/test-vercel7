@@ -1,204 +1,150 @@
 import { Button } from '@/components/ui/button'
-import { Dumbbell, Users, Brain, TrendingUp, Star, CheckCircle } from 'lucide-react'
-import Link from 'next/link'
+import { Dumbbell, Users, Brain, BarChart3, Star, Check } from 'lucide-react'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-white">
       {/* Header */}
-      <header className="px-4 lg:px-6 h-14 flex items-center">
-        <Link className="flex items-center justify-center" href="/">
-          <Dumbbell className="h-6 w-6 text-primary-600" />
-          <span className="ml-2 text-2xl font-bold text-gray-900">FitForge</span>
-        </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link
-            className="text-sm font-medium hover:text-primary-600 transition-colors"
-            href="/login"
-          >
-            Sign In
-          </Link>
-          <Link href="/register">
-            <Button size="sm">Get Started</Button>
-          </Link>
+      <header className="container mx-auto px-4 py-6">
+        <nav className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Dumbbell className="h-8 w-8 text-primary-600" />
+            <span className="text-2xl font-bold text-gray-900">FitForge</span>
+          </div>
+          <div className="space-x-4">
+            <Button variant="ghost" asChild>
+              <a href="/login">Sign In</a>
+            </Button>
+            <Button asChild>
+              <a href="/register">Get Started</a>
+            </Button>
+          </div>
         </nav>
       </header>
 
-      <main>
-        {/* Hero Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
-          <div className="container px-4 md:px-6 mx-auto">
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-                  Your AI-Powered
-                  <span className="text-primary-600"> Fitness Journey</span>
-                </h1>
-                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-                  Create personalized workout plans, track your progress, and connect with a community of fitness enthusiasts. Get AI-powered coaching tailored to your goals.
-                </p>
-              </div>
-              <div className="space-x-4">
-                <Link href="/register">
-                  <Button size="lg" className="h-11 px-8">
-                    Start Your Journey
-                  </Button>
-                </Link>
-                <Link href="/login">
-                  <Button variant="outline" size="lg" className="h-11 px-8">
-                    Sign In
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+      {/* Hero Section */}
+      <section className="container mx-auto px-4 py-20 text-center">
+        <h1 className="text-5xl font-bold text-gray-900 mb-6">
+          Forge Your Perfect <span className="text-primary-600">Fitness Journey</span>
+        </h1>
+        <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          Create personalized workout plans, track your progress, and get AI-powered coaching. 
+          Join a community of fitness enthusiasts on the same journey.
+        </p>
+        <div className="space-x-4">
+          <Button size="lg" asChild>
+            <a href="/register">Start Free Trial</a>
+          </Button>
+          <Button variant="outline" size="lg">
+            View Demo
+          </Button>
+        </div>
+      </section>
 
-        {/* Features Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
-          <div className="container px-4 md:px-6 mx-auto">
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Everything You Need to Succeed
-              </h2>
-              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-                From AI-generated workouts to social accountability, FitForge has all the tools to help you reach your fitness goals.
-              </p>
+      {/* Features */}
+      <section className="container mx-auto px-4 py-20">
+        <h2 className="text-3xl font-bold text-center mb-12">Everything you need to succeed</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="text-center">
+            <div className="bg-primary-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <Brain className="h-8 w-8 text-primary-600" />
             </div>
-            <div className="mx-auto grid max-w-5xl items-start gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-              <div className="grid gap-1">
-                <Brain className="h-10 w-10 text-primary-600" />
-                <h3 className="text-xl font-bold">AI-Powered Planning</h3>
-                <p className="text-gray-500">
-                  Get personalized workout plans generated by AI based on your goals, experience, and available equipment.
-                </p>
-              </div>
-              <div className="grid gap-1">
-                <TrendingUp className="h-10 w-10 text-primary-600" />
-                <h3 className="text-xl font-bold">Progress Tracking</h3>
-                <p className="text-gray-500">
-                  Track your workouts, monitor your progress, and get AI insights on your fitness journey.
-                </p>
-              </div>
-              <div className="grid gap-1">
-                <Users className="h-10 w-10 text-primary-600" />
-                <h3 className="text-xl font-bold">Social Community</h3>
-                <p className="text-gray-500">
-                  Connect with other fitness enthusiasts, share your workouts, and stay motivated together.
-                </p>
-              </div>
-            </div>
+            <h3 className="text-xl font-semibold mb-2">AI Workout Plans</h3>
+            <p className="text-gray-600">Get personalized workouts generated by AI based on your goals and equipment.</p>
           </div>
-        </section>
+          <div className="text-center">
+            <div className="bg-primary-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <BarChart3 className="h-8 w-8 text-primary-600" />
+            </div>
+            <h3 className="text-xl font-semibold mb-2">Progress Tracking</h3>
+            <p className="text-gray-600">Track your lifts, monitor progress, and get insights on your performance.</p>
+          </div>
+          <div className="text-center">
+            <div className="bg-primary-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <Users className="h-8 w-8 text-primary-600" />
+            </div>
+            <h3 className="text-xl font-semibold mb-2">Social Community</h3>
+            <p className="text-gray-600">Follow friends, share workouts, and stay motivated with community support.</p>
+          </div>
+          <div className="text-center">
+            <div className="bg-primary-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <Star className="h-8 w-8 text-primary-600" />
+            </div>
+            <h3 className="text-xl font-semibold mb-2">Form Coaching</h3>
+            <p className="text-gray-600">Get AI-powered form tips and safety advice for every exercise.</p>
+          </div>
+        </div>
+      </section>
 
-        {/* Pricing Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6 mx-auto">
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Choose Your Plan
-              </h2>
-              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-                Start free and upgrade when you're ready for advanced AI features.
-              </p>
-            </div>
-            <div className="mx-auto grid max-w-4xl items-start gap-6 py-12 lg:grid-cols-2 lg:gap-12">
-              <div className="grid gap-4 p-6 rounded-lg border">
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-bold">Free</h3>
-                  <p className="text-gray-500">Perfect for getting started</p>
-                  <div className="text-4xl font-bold">$0<span className="text-base font-normal">/month</span></div>
-                </div>
-                <ul className="grid gap-2">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
-                    <span className="text-sm">Up to 3 workout plans</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
-                    <span className="text-sm">Basic progress tracking</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
-                    <span className="text-sm">Community features</span>
-                  </li>
-                </ul>
-                <Link href="/register">
-                  <Button className="w-full">Get Started Free</Button>
-                </Link>
-              </div>
-              <div className="grid gap-4 p-6 rounded-lg border border-primary-200 bg-primary-50">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-2xl font-bold">Pro</h3>
-                    <Star className="h-5 w-5 text-yellow-500" />
-                  </div>
-                  <p className="text-gray-500">Full AI-powered experience</p>
-                  <div className="text-4xl font-bold">$12<span className="text-base font-normal">/month</span></div>
-                </div>
-                <ul className="grid gap-2">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
-                    <span className="text-sm">Unlimited workout plans</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
-                    <span className="text-sm">AI workout generation</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
-                    <span className="text-sm">AI progress insights</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
-                    <span className="text-sm">AI form tips</span>
-                  </li>
-                </ul>
-                <Link href="/upgrade">
-                  <Button className="w-full">Upgrade to Pro</Button>
-                </Link>
-              </div>
-            </div>
+      {/* Pricing */}
+      <section className="container mx-auto px-4 py-20">
+        <h2 className="text-3xl font-bold text-center mb-12">Choose your plan</h2>
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="bg-white rounded-lg shadow-lg p-8">
+            <h3 className="text-2xl font-bold mb-4">Free</h3>
+            <div className="text-4xl font-bold mb-6">$0<span className="text-lg font-normal text-gray-600">/month</span></div>
+            <ul className="space-y-3 mb-8">
+              <li className="flex items-center">
+                <Check className="h-5 w-5 text-green-500 mr-3" />
+                3 workout plans
+              </li>
+              <li className="flex items-center">
+                <Check className="h-5 w-5 text-green-500 mr-3" />
+                Basic progress tracking
+              </li>
+              <li className="flex items-center">
+                <Check className="h-5 w-5 text-green-500 mr-3" />
+                Community features
+              </li>
+              <li className="flex items-center">
+                <Check className="h-5 w-5 text-green-500 mr-3" />
+                Limited AI usage
+              </li>
+            </ul>
+            <Button className="w-full" variant="outline" asChild>
+              <a href="/register">Get Started</a>
+            </Button>
           </div>
-        </section>
 
-        {/* CTA Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-primary-600">
-          <div className="container px-4 md:px-6 mx-auto">
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-white">
-                  Ready to Transform Your Fitness?
-                </h2>
-                <p className="mx-auto max-w-[600px] text-primary-100 md:text-xl">
-                  Join thousands of users who are already achieving their fitness goals with FitForge.
-                </p>
-              </div>
-              <div className="space-x-4">
-                <Link href="/register">
-                  <Button size="lg" variant="outline" className="h-11 px-8 bg-white text-primary-600 hover:bg-gray-50">
-                    Start Free Today
-                  </Button>
-                </Link>
-              </div>
-            </div>
+          <div className="bg-primary-600 text-white rounded-lg shadow-lg p-8">
+            <h3 className="text-2xl font-bold mb-4">Pro</h3>
+            <div className="text-4xl font-bold mb-6">$12<span className="text-lg font-normal opacity-80">/month</span></div>
+            <ul className="space-y-3 mb-8">
+              <li className="flex items-center">
+                <Check className="h-5 w-5 text-primary-200 mr-3" />
+                Unlimited workout plans
+              </li>
+              <li className="flex items-center">
+                <Check className="h-5 w-5 text-primary-200 mr-3" />
+                Full AI features
+              </li>
+              <li className="flex items-center">
+                <Check className="h-5 w-5 text-primary-200 mr-3" />
+                Advanced analytics
+              </li>
+              <li className="flex items-center">
+                <Check className="h-5 w-5 text-primary-200 mr-3" />
+                Priority support
+              </li>
+            </ul>
+            <Button className="w-full bg-white text-primary-600 hover:bg-gray-100" asChild>
+              <a href="/upgrade">Upgrade Now</a>
+            </Button>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
 
       {/* Footer */}
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-gray-500">
-          © 2024 FitForge. All rights reserved.
-        </p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-xs hover:underline underline-offset-4" href="#">
-            Terms of Service
-          </Link>
-          <Link className="text-xs hover:underline underline-offset-4" href="#">
-            Privacy Policy
-          </Link>
-        </nav>
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-center space-x-2 mb-8">
+            <Dumbbell className="h-8 w-8 text-primary-400" />
+            <span className="text-2xl font-bold">FitForge</span>
+          </div>
+          <div className="text-center text-gray-400">
+            <p>&copy; 2024 FitForge. All rights reserved.</p>
+          </div>
+        </div>
       </footer>
     </div>
   )

@@ -6,8 +6,8 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'FitForge - AI Workout Planning & Social Fitness',
-  description: 'Create personalized workout plans, track your progress, and connect with a community of fitness enthusiasts. Get AI-powered coaching and reach your fitness goals.',
-  keywords: 'fitness, workout, AI, training, exercise, social, community',
+  description: 'Create personalized workout plans, track progress, and get AI-powered coaching with FitForge. Join a community of fitness enthusiasts.',
+  keywords: 'fitness, workout, AI coach, exercise, gym, strength training',
 }
 
 export default function RootLayout({
