@@ -3,6 +3,6 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['libsodium-wrappers']
   }
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

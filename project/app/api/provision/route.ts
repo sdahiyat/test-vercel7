@@ -1,50 +1,52 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { encryptSecret, getRepositoryPublicKey, createOrUpdateSecret } from '@/lib/github';
+import { NextRequest, NextResponse } from 'next/server'
+import { encryptSecret, getRepositoryPublicKey, createOrUpdateSecret } from '@/lib/github'
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { owner, repo, secrets, token } = body;
+    const { owner, repo, secrets, token } = await request.json()
     
     if (!owner || !repo || !secrets || !token) {
       return NextResponse.json(
         { error: 'Missing required fields: owner, repo, secrets, token' },
         { status: 400 }
-      );
+      )
     }
     
-    // Get repository public key for encryption
-    const { key: publicKey, key_id: keyId } = await getRepositoryPublicKey(owner, repo, token);
+    // Get the repository's public key
+    const { key: publicKey, key_id: keyId } = await getRepositoryPublicKey(owner, repo, token)
     
-    const results = [];
+    const results = []
     
     // Process each secret
-    for (const secret of secrets) {
+    for (const [secretName, secretValue] of Object.entries(secrets)) {
       try {
-        // Encrypt the secret value
-        const encryptedValue = await encryptSecret(secret.value, publicKey);
+        const encryptedValue = await encryptSecret(publicKey, secretValue as string)
         
-        // Create or update the secret
-        await createOrUpdateSecret(owner, repo, secret.name, encryptedValue, keyId, token);
+        await createOrUpdateSecret(
+          owner,
+          repo,
+          secretName,
+          encryptedValue,
+          keyId,
+          token
+        )
         
-        results.push({
-          name: secret.name,
-          success: true
-        });
+        results.push({ name: secretName, status: 'success' })
       } catch (error) {
-        results.push({
-          name: secret.name,
-          success: false,
-          error: error instanceof Error ? error.message : 'Unknown error'
-        });
+        results.push({ 
+          name: secretName, 
+          status: 'error', 
+          error: error instanceof Error ? error.message : 'Unknown error' 
+        })
       }
     }
     
-    return NextResponse.json({ results });
+    return NextResponse.json({ results })
   } catch (error) {
+    console.error('Provision error:', error)
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Unknown error' },
+      { error: 'Internal server error' },
       { status: 500 }
-    );
+    )
   }
 }
