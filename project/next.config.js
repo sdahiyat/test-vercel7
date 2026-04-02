@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverComponentsExternalPackages: ['libsodium-wrappers']
-  }
+    appDir: true,
+  },
 }
 
 module.exports = nextConfig
